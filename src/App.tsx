@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, AppBar, Typography, Grow, Grid, Box } from "@mui/material";
+import Posts from "./components/Posts/Posts";
+import Form from "./components/Form/From";
+import useStyles from "./styles";
 
-function App() {
+const App = () => {
+  const { classes, cx } = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar className={cx(classes.appBar)} position="static" color="inherit">
+        <Typography className={cx(classes.heading)} variant="h2" align="center">
+          Posting App
+        </Typography>
+        <img
+          className={cx(classes.image)}
+          src={require("./assets/logo.png")}
+          alt="posting app"
+          height="60"
+          width="60"
+        />
+      </AppBar>
+      <Grow in>
+        <Container>
+          <Grid
+            container
+            justifyContent="space-between"
+            alignSelf="stretch"
+            spacing={3}
+          >
+            <Grid item xs={12} sm={7}>
+              <Posts />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Form />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow>
+    </Box>
   );
-}
+};
 
 export default App;
