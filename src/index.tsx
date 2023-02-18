@@ -5,6 +5,9 @@ import App from "./App";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
+import store from "./store/store";
+import { Provider } from "react-redux";
+
 export const muiCache = createCache({
   key: "mui",
   prepend: true,
@@ -15,8 +18,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <CacheProvider value={muiCache}>
+    <Provider store={store}>
+      <CacheProvider value={muiCache}>
         <App />
-    </CacheProvider>
+      </CacheProvider>
+    </Provider>
   </React.StrictMode>
 );

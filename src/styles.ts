@@ -8,7 +8,7 @@ const { makeStyles } = createMakeAndWithStyles({
 export default makeStyles()(() => ({
   appBar: {
     padding: '10px',
-    margin: "0",
+    margin: "0 0 25px 0",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

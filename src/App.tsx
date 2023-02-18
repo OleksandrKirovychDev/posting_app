@@ -2,9 +2,19 @@ import { Container, AppBar, Typography, Grow, Grid, Box } from "@mui/material";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/From";
 import useStyles from "./styles";
+import { useEffect } from "react";
+import { useAppDispatch } from "./shared/hooks/useTypedSelector.hook";
+import { getPosts } from "./store/features/posts.feature";
 
 const App = () => {
   const { classes, cx } = useStyles();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={cx(classes.appBar)} position="static" color="inherit">
