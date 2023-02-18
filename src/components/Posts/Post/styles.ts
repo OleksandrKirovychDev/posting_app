@@ -16,7 +16,7 @@ export default makeStyles()(() => ({
     border: "solid",
   },
   fullHeightCard: {
-    height: "100%",
+    height: "300px",
   },
   card: {
     display: "flex",
@@ -32,22 +32,18 @@ export default makeStyles()(() => ({
     left: "20px",
     color: "white",
   },
-  overlay2: {
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-    color: "white",
-  },
   grid: {
     display: "flex",
   },
   details: {
     display: "flex",
     justifyContent: "space-between",
-    margin: "20px",
+    margin: "0 20px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   title: {
-    padding: "0 16px",
+    padding: "4px 16px",
   },
   cardActions: {
     padding: "0 16px 8px 16px",

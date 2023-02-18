@@ -1,18 +1,32 @@
 import useStyles from "./styles";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { useState } from "react";
+
 import { IPost } from "../../shared/interfaces/post.interface";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../shared/hooks/useTypedSelector.hook";
+import { createPost } from "../../store/features/posts.feature";
 
 const Form = () => {
   const { classes, cx } = useStyles();
+  const { isLoading } = useAppSelector((state) => state.posts);
+  const dispatch = useAppDispatch();
 
   const [postData, setPostData] = useState<Omit<IPost, "id">>({
     title: "",
     body: "",
   });
 
-  const handleSubmit = () => {};
-  const clear = () => {};
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    dispatch(createPost(postData));
+  };
+
+  const clear = () => {
+    setPostData({ title: "", body: "" });
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -53,6 +67,7 @@ const Form = () => {
           color="primary"
           size="large"
           type="submit"
+          disabled={isLoading}
           fullWidth
         >
           Submit
