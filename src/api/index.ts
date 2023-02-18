@@ -9,3 +9,6 @@ export const createPosts = (newPost: Omit<IPost, "id">) =>
 
 export const deletePost = (id: number) =>
   axios.delete<void>(`${BASE_URL}/${POSTS}/${id}`);
+
+export const updatePost = (newPost: IPost) =>
+  axios.put<IPost>(`${BASE_URL}/${POSTS}/${newPost.id}`, newPost);

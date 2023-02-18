@@ -39,16 +39,37 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+export const updatePost = createAsyncThunk(
+  "posts/update",
+  async (post: IPost, thunkApi) => {
+    try {
+      const { data } = await api.updatePost(post);
+      console.log("aaaaa", data);
+      return data;
+    } catch (err: any) {
+      return thunkApi.rejectWithValue(err.message);
+    }
+  }
+);
+
 const initialState: IPostState = {
   isLoading: false,
   error: null,
   posts: [],
+  selected: null,
 };
 
-const postSice = createSlice({
+const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    selectPost(state, action: PayloadAction<number>) {
+      state.selected = state.posts.find((post) => post.id === action.payload)!;
+    },
+    clearSelectedPost(state) {
+      state.selected = null!;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getPosts.pending, (state) => {
@@ -61,7 +82,6 @@ const postSice = createSlice({
       })
       .addCase(getPosts.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
-
         state.error = action.payload;
       })
       .addCase(createPost.pending, (state) => {
@@ -87,8 +107,24 @@ const postSice = createSlice({
       .addCase(deletePost.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(updatePost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.posts = state.posts.map((post) =>
+          post.id === action.payload.id ? action.payload : post
+        );
+      })
+      .addCase(updatePost.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export default postSice.reducer;
+export const { selectPost, clearSelectedPost } = postSlice.actions;
+
+export default postSlice.reducer;

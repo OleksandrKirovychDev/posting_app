@@ -1,31 +1,50 @@
 import useStyles from "./styles";
 import { TextField, Button, Typography, Paper } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IPost } from "../../shared/interfaces/post.interface";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../shared/hooks/useTypedSelector.hook";
-import { createPost } from "../../store/features/posts.feature";
+import {
+  clearSelectedPost,
+  createPost,
+  updatePost,
+} from "../../store/features/posts.feature";
 
 const Form = () => {
   const { classes, cx } = useStyles();
   const { isLoading } = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();
 
-  const [postData, setPostData] = useState<Omit<IPost, "id">>({
+  const selectedPost = useAppSelector((state) => state.posts.selected);
+
+  const [postData, setPostData] = useState<IPost>({
     title: "",
     body: "",
+    id: 0,
   });
+
+  useEffect(() => {
+    if (selectedPost) setPostData(selectedPost);
+  }, [selectedPost]);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    if (!selectedPost) {
+      dispatch(createPost(postData));
+    } else {
+      dispatch(updatePost(postData));
+    }
+    clear();
   };
 
   const clear = () => {
-    setPostData({ title: "", body: "" });
+    if (selectedPost) {
+      dispatch(clearSelectedPost());
+    }
+    setPostData({ title: "", body: "", id: 0 });
   };
 
   const handleChange = (
@@ -42,7 +61,9 @@ const Form = () => {
         className={cx(classes.root, classes.form)}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Post</Typography>
+        <Typography variant="h6">
+          {!selectedPost ? "Create a" : "Update the"} Post
+        </Typography>
         <TextField
           name="title"
           variant="outlined"
@@ -80,7 +101,7 @@ const Form = () => {
           fullWidth
           onClick={clear}
         >
-          Clear
+          {!selectedPost ? "Clear" : "Discard"}
         </Button>
       </form>
     </Paper>

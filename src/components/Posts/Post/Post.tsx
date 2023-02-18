@@ -7,19 +7,31 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../shared/hooks/useTypedSelector.hook";
-import { deletePost } from "../../../store/features/posts.feature";
+import {
+  deletePost,
+  selectPost,
+  clearSelectedPost,
+} from "../../../store/features/posts.feature";
 
 const Post = ({ post }: { post: IPost }) => {
   const { classes, cx } = useStyles();
   const { isLoading } = useAppSelector((store) => store.posts);
   const dispatch = useAppDispatch();
 
-  const deleteCurrentPost = (id: number) => dispatch(deletePost(id));
+  const deleteCurrentPost = (id: number) => {
+    dispatch(deletePost(id));
+    dispatch(clearSelectedPost());
+  };
+  const selectCurrentPost = (id: number) => dispatch(selectPost(id));
 
   return (
     <Card className={cx(classes.card, classes.fullHeightCard)}>
       <div>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+        <Button
+          style={{ color: "white" }}
+          size="small"
+          onClick={() => selectCurrentPost(post.id)}
+        >
           <MoreHorizIcon fontSize="medium" color="primary" />
         </Button>
       </div>

@@ -1,6 +1,6 @@
 import { Container, AppBar, Typography, Grow, Grid, Box } from "@mui/material";
 import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/From";
+import Form from "./components/Form/Form";
 import useStyles from "./styles";
 import { useEffect } from "react";
 import { useAppDispatch } from "./shared/hooks/useTypedSelector.hook";

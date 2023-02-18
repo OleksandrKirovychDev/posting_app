@@ -8,7 +8,7 @@ const Posts = () => {
 
   const { posts } = useAppSelector((state) => state.posts);
   const { isLoading } = useAppSelector((state) => state.posts);
-  console.log(posts);
+
   return isLoading && !posts.length ? (
     <CircularProgress />
   ) : (
