@@ -11,6 +11,7 @@ export const getPosts = createAsyncThunk(
       const { data } = await api.fetchPosts();
       return data.reverse();
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },
@@ -23,6 +24,7 @@ export const createPost = createAsyncThunk(
       const { data } = await api.createPosts(post);
       return data;
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },
@@ -35,6 +37,7 @@ export const deletePost = createAsyncThunk(
       await api.deletePost(id);
       return id;
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },
@@ -47,6 +50,7 @@ export const updatePost = createAsyncThunk(
       const { data } = await api.updatePost(post);
       return data;
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },

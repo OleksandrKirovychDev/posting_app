@@ -5,7 +5,7 @@ const { makeStyles } = createMakeAndWithStyles({
   useTheme,
 });
 
-export default makeStyles()((theme) => ({
+export default makeStyles()(() => ({
   commentsContainer: {
     width: '100%',
     display: 'flex',

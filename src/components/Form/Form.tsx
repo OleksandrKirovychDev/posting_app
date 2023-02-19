@@ -13,7 +13,7 @@ import {
   updatePost,
 } from '../../store/features/posts.feature';
 
-const Form = () => {
+const Form: React.FC = () => {
   const { classes, cx } = useStyles();
   const { isLoading } = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();

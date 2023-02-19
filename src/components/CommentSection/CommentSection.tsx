@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import { Typography, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 
@@ -16,7 +16,7 @@ interface CommentSectionProps {
   comments: IComment[];
 }
 
-const CommentSection = ({ comments, post }: CommentSectionProps) => {
+const CommentSection: React.FC<CommentSectionProps> = ({ comments, post }) => {
   const { classes, cx } = useStyles();
   const { isCommentLoading } = useAppSelector((state) => state.postDetails);
   const dispatch = useAppDispatch();

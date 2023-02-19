@@ -12,6 +12,7 @@ export const getPostDetails = createAsyncThunk(
       const { data } = await api.getPostDetails(id);
       return data;
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },
@@ -25,6 +26,7 @@ export const postComment = createAsyncThunk(
       await api.postComment(comment);
       return comment;
     } catch (err: any) {
+      alert(err.message);
       return thunkApi.rejectWithValue(err.message);
     }
   },

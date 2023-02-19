@@ -15,7 +15,11 @@ import {
 } from '../../../store/features/posts.feature';
 import { useNavigate } from 'react-router-dom';
 
-const Post = ({ post }: { post: IPost }) => {
+interface PostProps {
+  post: IPost;
+}
+
+const Post: React.FC<PostProps> = ({ post }) => {
   const { classes, cx } = useStyles();
   const { isLoading } = useAppSelector((store) => store.posts);
   const navigate = useNavigate();

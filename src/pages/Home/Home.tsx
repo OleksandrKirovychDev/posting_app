@@ -1,11 +1,11 @@
 import { Container, Grow, Grid } from '@mui/material';
 import { useEffect } from 'react';
 
-import Posts from '../components/Posts/Posts';
-import Form from '../components/Form/Form';
+import Posts from '../../components/Posts/Posts';
+import Form from '../../components/Form/Form';
 
-import { useAppDispatch } from '../shared/hooks/useTypedSelector.hook';
-import { discardPosts, getPosts } from '../store/features/posts.feature';
+import { useAppDispatch } from '../../shared/hooks/useTypedSelector.hook';
+import { discardPosts, getPosts } from '../../store/features/posts.feature';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();

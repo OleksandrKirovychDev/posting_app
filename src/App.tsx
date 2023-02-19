@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './shared/components/Header/Header';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 
 const PostDetails = React.lazy(() => import('./pages/PostDetails/PostDetails'));
 
