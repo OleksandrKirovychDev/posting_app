@@ -1,6 +1,6 @@
 import axios from "axios";
-import { BASE_URL, POSTS } from "../constants/url.constants";
-import { IPost } from "../shared/interfaces/post.interface";
+import { BASE_URL, POSTS } from "../constants/api.constants";
+import { IPost } from "../shared/entities/post.entity";
 
 export const fetchPosts = () => axios.get<IPost[]>(`${BASE_URL}/${POSTS}`);
 

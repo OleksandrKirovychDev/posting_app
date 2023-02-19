@@ -2,7 +2,7 @@ import useStyles from "./styles";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import { IPost } from "../../shared/interfaces/post.interface";
+import { IPost } from "../../shared/entities/post.entity";
 import {
   useAppDispatch,
   useAppSelector,

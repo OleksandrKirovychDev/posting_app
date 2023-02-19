@@ -2,7 +2,7 @@ import { Card, CardActions, Button, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import useStyles from "./styles";
-import { IPost } from "../../../shared/interfaces/post.interface";
+import { IPost } from "../../../shared/entities/post.entity";
 import {
   useAppDispatch,
   useAppSelector,

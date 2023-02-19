@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import * as api from "../../api";
-import { IPost } from "../../shared/interfaces/post.interface";
+import { IPost } from "../../shared/entities/post.entity";
 import { IPostState } from "../interfaces/postsState.interface";
 
 export const getPosts = createAsyncThunk(
