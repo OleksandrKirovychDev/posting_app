@@ -44,7 +44,6 @@ export const updatePost = createAsyncThunk(
   async (post: IPost, thunkApi) => {
     try {
       const { data } = await api.updatePost(post);
-      console.log("aaaaa", data);
       return data;
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
@@ -68,6 +67,10 @@ const postSlice = createSlice({
     },
     clearSelectedPost(state) {
       state.selected = null!;
+    },
+    discardPosts(state) {
+      state.posts = [];
+      state.selected = null;
     },
   },
   extraReducers(builder) {
@@ -125,6 +128,7 @@ const postSlice = createSlice({
   },
 });
 
-export const { selectPost, clearSelectedPost } = postSlice.actions;
+export const { selectPost, clearSelectedPost, discardPosts } =
+  postSlice.actions;
 
 export default postSlice.reducer;

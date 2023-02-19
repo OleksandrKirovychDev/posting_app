@@ -1,13 +1,13 @@
 import { AppBar, Typography } from "@mui/material";
 import useStyles from "./styles";
-
+import { Link } from "react-router-dom";
 const Header: React.FC = () => {
   const { classes, cx } = useStyles();
 
   return (
     <AppBar className={cx(classes.appBar)} position="static" color="secondary">
       <Typography className={cx(classes.heading)} variant="h2" align="center">
-        Posting App
+        <Link to='/home'>Posting App</Link>
       </Typography>
       <img
         className={cx(classes.image)}

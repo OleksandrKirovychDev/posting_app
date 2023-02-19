@@ -12,12 +12,13 @@ import {
   selectPost,
   clearSelectedPost,
 } from "../../../store/features/posts.feature";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post }: { post: IPost }) => {
   const { classes, cx } = useStyles();
   const { isLoading } = useAppSelector((store) => store.posts);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const deleteCurrentPost = (id: number) => {
     dispatch(deletePost(id));
     dispatch(clearSelectedPost());
@@ -52,6 +53,16 @@ const Post = ({ post }: { post: IPost }) => {
         >
           <DeleteIcon fontSize="small" />
           Delete
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          disabled={isLoading}
+          onClick={() => {
+            navigate(`../posts/${post.id}`);
+          }}
+        >
+          Details
         </Button>
       </CardActions>
     </Card>

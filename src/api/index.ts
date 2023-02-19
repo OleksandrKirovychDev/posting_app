@@ -1,5 +1,11 @@
 import axios from "axios";
-import { BASE_URL, POSTS } from "../constants/api.constants";
+import {
+  BASE_URL,
+  COMMENTS,
+  EMBED_COMMENTS_QUERY,
+  POSTS,
+} from "../constants/api.constants";
+import { IComment } from "../shared/entities/comment.entity";
 import { IPost } from "../shared/entities/post.entity";
 
 export const fetchPosts = () => axios.get<IPost[]>(`${BASE_URL}/${POSTS}`);
@@ -12,3 +18,11 @@ export const deletePost = (id: number) =>
 
 export const updatePost = (newPost: IPost) =>
   axios.put<IPost>(`${BASE_URL}/${POSTS}/${newPost.id}`, newPost);
+
+export const getPostDetails = (id: number) =>
+  axios.get<IPost & { comments: IComment[] }>(
+    `${BASE_URL}/${POSTS}/${id}?${EMBED_COMMENTS_QUERY}`
+  );
+
+export const postComment = (comment: Omit<IComment, "id">) =>
+  axios.post<void>(`${BASE_URL}/${COMMENTS}`, comment);
