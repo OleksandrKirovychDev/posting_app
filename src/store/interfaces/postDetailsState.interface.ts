@@ -1,5 +1,5 @@
-import { IComment } from "../../shared/entities/comment.entity";
-import { IPost } from "../../shared/entities/post.entity";
+import { IComment } from '../../shared/entities/comment.entity';
+import { IPost } from '../../shared/entities/post.entity';
 
 export interface IPostDetaisState {
   isLoading: boolean;

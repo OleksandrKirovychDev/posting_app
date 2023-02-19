@@ -1,5 +1,5 @@
-import { useTheme } from "@mui/material/styles";
-import { createMakeAndWithStyles } from "tss-react";
+import { useTheme } from '@mui/material/styles';
+import { createMakeAndWithStyles } from 'tss-react';
 
 const { makeStyles } = createMakeAndWithStyles({
   useTheme,
@@ -8,16 +8,16 @@ const { makeStyles } = createMakeAndWithStyles({
 export default makeStyles()(() => ({
   appBar: {
     padding: '10px',
-    margin: "0 0 25px 0",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    margin: '0 0 25px 0',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   heading: {
-    color: "black",
+    color: 'black',
   },
   image: {
-    marginLeft: "15px",
+    marginLeft: '15px',
   },
 }));

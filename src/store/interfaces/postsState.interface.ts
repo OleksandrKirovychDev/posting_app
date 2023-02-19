@@ -1,4 +1,4 @@
-import { IPost } from "../../shared/entities/post.entity";
+import { IPost } from '../../shared/entities/post.entity';
 
 export interface IPostState {
   isLoading: boolean;

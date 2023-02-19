@@ -1,5 +1,5 @@
-import { useTheme } from "@mui/material/styles";
-import { createMakeAndWithStyles } from "tss-react";
+import { useTheme } from '@mui/material/styles';
+import { createMakeAndWithStyles } from 'tss-react';
 
 const { makeStyles } = createMakeAndWithStyles({
   useTheme,
@@ -7,11 +7,11 @@ const { makeStyles } = createMakeAndWithStyles({
 
 export default makeStyles()((theme) => ({
   commentsContainer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   button: {
-    marginTop: "10px",
+    marginTop: '10px',
   },
 }));

@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import * as api from "../../api";
-import { IPost } from "../../shared/entities/post.entity";
-import { IPostState } from "../interfaces/postsState.interface";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+
+import * as api from '../../api';
+import { IPost } from '../../shared/entities/post.entity';
+import { IPostState } from '../interfaces/postsState.interface';
 
 export const getPosts = createAsyncThunk(
-  "posts/get-all",
+  'posts/get-all',
   async (data, thunkApi) => {
     try {
       const { data } = await api.fetchPosts();
@@ -12,23 +13,23 @@ export const getPosts = createAsyncThunk(
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 export const createPost = createAsyncThunk(
-  "posts/create",
-  async (post: Omit<IPost, "id">, thunkApi) => {
+  'posts/create',
+  async (post: Omit<IPost, 'id'>, thunkApi) => {
     try {
       const { data } = await api.createPosts(post);
       return data;
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 export const deletePost = createAsyncThunk(
-  "posts/delete",
+  'posts/delete',
   async (id: number, thunkApi) => {
     try {
       await api.deletePost(id);
@@ -36,11 +37,11 @@ export const deletePost = createAsyncThunk(
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 export const updatePost = createAsyncThunk(
-  "posts/update",
+  'posts/update',
   async (post: IPost, thunkApi) => {
     try {
       const { data } = await api.updatePost(post);
@@ -48,7 +49,7 @@ export const updatePost = createAsyncThunk(
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 const initialState: IPostState = {
@@ -59,7 +60,7 @@ const initialState: IPostState = {
 };
 
 const postSlice = createSlice({
-  name: "posts",
+  name: 'posts',
   initialState,
   reducers: {
     selectPost(state, action: PayloadAction<number>) {
@@ -118,7 +119,7 @@ const postSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.posts = state.posts.map((post) =>
-          post.id === action.payload.id ? action.payload : post
+          post.id === action.payload.id ? action.payload : post,
         );
       })
       .addCase(updatePost.rejected, (state, action: PayloadAction<any>) => {

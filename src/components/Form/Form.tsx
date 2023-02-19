@@ -1,17 +1,17 @@
-import useStyles from "./styles";
-import { TextField, Button, Typography, Paper } from "@mui/material";
-import { useEffect, useState } from "react";
+import useStyles from './styles';
+import { TextField, Button, Typography, Paper } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-import { IPost } from "../../shared/entities/post.entity";
+import { IPost } from '../../shared/entities/post.entity';
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../shared/hooks/useTypedSelector.hook";
+} from '../../shared/hooks/useTypedSelector.hook';
 import {
   clearSelectedPost,
   createPost,
   updatePost,
-} from "../../store/features/posts.feature";
+} from '../../store/features/posts.feature';
 
 const Form = () => {
   const { classes, cx } = useStyles();
@@ -21,8 +21,8 @@ const Form = () => {
   const selectedPost = useAppSelector((state) => state.posts.selected);
 
   const [postData, setPostData] = useState<IPost>({
-    title: "",
-    body: "",
+    title: '',
+    body: '',
     id: 0,
   });
 
@@ -44,11 +44,11 @@ const Form = () => {
     if (selectedPost) {
       dispatch(clearSelectedPost());
     }
-    setPostData({ title: "", body: "", id: 0 });
+    setPostData({ title: '', body: '', id: 0 });
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     setPostData({ ...postData, [e?.target.name]: e?.target.value });
   };
@@ -62,7 +62,7 @@ const Form = () => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {!selectedPost ? "Create a" : "Update the"} Post
+          {!selectedPost ? 'Create a' : 'Update the'} Post
         </Typography>
         <TextField
           name="title"
@@ -101,7 +101,7 @@ const Form = () => {
           fullWidth
           onClick={clear}
         >
-          {!selectedPost ? "Clear" : "Discard"}
+          {!selectedPost ? 'Clear' : 'Discard'}
         </Button>
       </form>
     </Paper>

@@ -1,11 +1,12 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import * as api from "../../api";
-import { IComment } from "../../shared/entities/comment.entity";
-import { IPost } from "../../shared/entities/post.entity";
-import { IPostDetaisState } from "../interfaces/postDetailsState.interface";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+
+import * as api from '../../api';
+import { IComment } from '../../shared/entities/comment.entity';
+import { IPost } from '../../shared/entities/post.entity';
+import { IPostDetaisState } from '../interfaces/postDetailsState.interface';
 
 export const getPostDetails = createAsyncThunk(
-  "postDetails/getPostDetails",
+  'postDetails/getPostDetails',
   async (id: number, thunkApi) => {
     try {
       const { data } = await api.getPostDetails(id);
@@ -13,12 +14,12 @@ export const getPostDetails = createAsyncThunk(
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 export const postComment = createAsyncThunk(
-  "postDetails/postComment",
-  async (comment: Omit<IComment, "id">, thunkApi) => {
+  'postDetails/postComment',
+  async (comment: Omit<IComment, 'id'>, thunkApi) => {
     try {
       console.log(comment);
       await api.postComment(comment);
@@ -26,7 +27,7 @@ export const postComment = createAsyncThunk(
     } catch (err: any) {
       return thunkApi.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 const initialState: IPostDetaisState = {
@@ -38,7 +39,7 @@ const initialState: IPostDetaisState = {
 };
 
 const postDetailsSlice = createSlice({
-  name: "postDetails",
+  name: 'postDetails',
   initialState,
   reducers: {
     discardPostDetails(state) {
@@ -58,7 +59,7 @@ const postDetailsSlice = createSlice({
           state.error = null;
           state.post = action.payload;
           state.comments = action.payload.comments;
-        }
+        },
       )
       .addCase(getPostDetails.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
@@ -69,14 +70,14 @@ const postDetailsSlice = createSlice({
       })
       .addCase(
         postComment.fulfilled,
-        (state, action: PayloadAction<Omit<IComment, "id">>) => {
+        (state, action: PayloadAction<Omit<IComment, 'id'>>) => {
           state.isCommentLoading = false;
           state.error = null;
           state.comments.push({
             ...action.payload,
             id: Math.ceil(Math.random() * 100),
           });
-        }
+        },
       )
       .addCase(postComment.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;

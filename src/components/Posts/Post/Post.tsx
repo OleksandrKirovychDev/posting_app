@@ -1,18 +1,19 @@
-import { Card, CardActions, Button, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import useStyles from "./styles";
-import { IPost } from "../../../shared/entities/post.entity";
+import { Card, CardActions, Button, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
+import useStyles from './styles';
+import { IPost } from '../../../shared/entities/post.entity';
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../../shared/hooks/useTypedSelector.hook";
+} from '../../../shared/hooks/useTypedSelector.hook';
 import {
   deletePost,
   selectPost,
   clearSelectedPost,
-} from "../../../store/features/posts.feature";
-import { useNavigate } from "react-router-dom";
+} from '../../../store/features/posts.feature';
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post }: { post: IPost }) => {
   const { classes, cx } = useStyles();
@@ -29,7 +30,7 @@ const Post = ({ post }: { post: IPost }) => {
     <Card className={cx(classes.card, classes.fullHeightCard)}>
       <div>
         <Button
-          style={{ color: "white" }}
+          style={{ color: 'white' }}
           size="small"
           onClick={() => selectCurrentPost(post.id)}
         >

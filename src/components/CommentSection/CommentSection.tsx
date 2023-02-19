@@ -1,14 +1,15 @@
-import { useState, SyntheticEvent } from "react";
-import { Typography, TextField, Button } from "@mui/material";
-import { Box } from "@mui/system";
-import useStyles from "./styles";
-import { IPost } from "../../shared/entities/post.entity";
-import { IComment } from "../../shared/entities/comment.entity";
-import { postComment } from "../../store/features/postDetails.feature";
+import { useState, SyntheticEvent } from 'react';
+import { Typography, TextField, Button } from '@mui/material';
+import { Box } from '@mui/system';
+
+import useStyles from './styles';
+import { IPost } from '../../shared/entities/post.entity';
+import { IComment } from '../../shared/entities/comment.entity';
+import { postComment } from '../../store/features/postDetails.feature';
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../shared/hooks/useTypedSelector.hook";
+} from '../../shared/hooks/useTypedSelector.hook';
 
 interface CommentSectionProps {
   post: IPost;
@@ -19,14 +20,14 @@ const CommentSection = ({ comments, post }: CommentSectionProps) => {
   const { classes, cx } = useStyles();
   const { isCommentLoading } = useAppSelector((state) => state.postDetails);
   const dispatch = useAppDispatch();
-  const [comment, setComment] = useState<Omit<IComment, "id" | "postId">>({
-    body: "",
-    email: "",
-    name: "",
+  const [comment, setComment] = useState<Omit<IComment, 'id' | 'postId'>>({
+    body: '',
+    email: '',
+    name: '',
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     setComment({ ...comment, [e?.target.name]: e?.target.value });
   };
@@ -56,10 +57,10 @@ const CommentSection = ({ comments, post }: CommentSectionProps) => {
         </div>
         <form
           style={{
-            maxWidth: "500px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
+            maxWidth: '500px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
           }}
           onSubmit={handleSubmit}
         >

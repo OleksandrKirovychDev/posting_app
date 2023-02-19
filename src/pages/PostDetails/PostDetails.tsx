@@ -1,17 +1,19 @@
-import { useEffect } from "react";
-import { Box } from "@mui/system";
-import { Paper, Typography, CircularProgress, Divider } from "@mui/material";
-import CommentSection from "../../components/CommentSection/CommentSection";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Box } from '@mui/system';
+import { Paper, Typography, CircularProgress, Divider } from '@mui/material';
+import useStyles from './styles';
+
+import CommentSection from '../../components/CommentSection/CommentSection';
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../shared/hooks/useTypedSelector.hook";
-import { useParams } from "react-router-dom";
-import useStyles from "./styles";
+} from '../../shared/hooks/useTypedSelector.hook';
 import {
   discardPostDetails,
   getPostDetails,
-} from "../../store/features/postDetails.feature";
+} from '../../store/features/postDetails.feature';
+
 const PostDetails: React.FC = () => {
   const { classes, cx } = useStyles();
   const { id } = useParams();
@@ -31,7 +33,7 @@ const PostDetails: React.FC = () => {
   return !isLoading ? (
     <Box width="100%" display="flex" justifyContent="center">
       <Paper
-        style={{ padding: "20px", maxWidth: "1500px", flexGrow: "1" }}
+        style={{ padding: '20px', maxWidth: '1500px', flexGrow: '1' }}
         elevation={6}
       >
         <div className={cx(classes.card)}>
@@ -42,7 +44,7 @@ const PostDetails: React.FC = () => {
             <Typography gutterBottom variant="body1" component="p">
               {post?.body}
             </Typography>
-            <Divider style={{ margin: "20px 0" }} />
+            <Divider style={{ margin: '20px 0' }} />
           </div>
         </div>
         <CommentSection comments={comments} post={post!} />

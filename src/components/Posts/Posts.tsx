@@ -1,7 +1,8 @@
-import { Grid, CircularProgress } from "@mui/material";
-import useStyles from "./styles";
-import Post from "./Post/Post";
-import { useAppSelector } from "../../shared/hooks/useTypedSelector.hook";
+import { Grid, CircularProgress } from '@mui/material';
+
+import useStyles from './styles';
+import Post from './Post/Post';
+import { useAppSelector } from '../../shared/hooks/useTypedSelector.hook';
 
 const Posts = () => {
   const { classes, cx } = useStyles();

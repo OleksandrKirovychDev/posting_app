@@ -1,6 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import postSlice from "./features/posts.feature";
-import postDetailsSlice from "./features/postDetails.feature";
+import { configureStore } from '@reduxjs/toolkit';
+
+import postSlice from './features/posts.feature';
+import postDetailsSlice from './features/postDetails.feature';
 
 export const store = configureStore({
   reducer: { posts: postSlice, postDetails: postDetailsSlice },
