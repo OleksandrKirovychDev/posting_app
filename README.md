@@ -2,8 +2,8 @@
 
 ### npm `install`
 
-#and then:
+# and then:
 
 ### `npm start`
 
-#Then go to the port 3000 on your browser
+# Then go to the port 3000 on your browser
