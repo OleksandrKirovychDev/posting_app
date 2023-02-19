@@ -1,6 +1,6 @@
 # To run this app, type: 
 
-### npm `install`
+### `npm install`
 
 # and then:
 
